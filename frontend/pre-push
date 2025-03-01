@@ -1,0 +1,12 @@
+#!/bin/bash
+branch=$(git rev-parse --abbrev-ref HEAD)
+OWNER_USERNAME="Mrcoder15"
+CURRENT_USER=$(git config --global user.name)
+echo "Authenticated as: $CURRENT_USER"
+
+if [ "$branch" == "main" ]; then
+    if [ "$CURRENT_USER" != "$OWNER_USERNAME" ]; then
+        echo "🚫 Pushing to main is not allowed! Only Sammy can push."
+        exit 1
+    fi
+fi
